@@ -1,12 +1,14 @@
+var path = require('path');
+
 module.exports = function(grunt) {
     grunt.initConfig({
         requirejs: {
             compile: {
                 options: {
-                    name: "main",
-                    baseUrl: "src/",
-                    mainConfigFile: "src/config.js",
-                    out: "dist/main.js"
+                    name: "app",
+                    baseUrl: "src/js/",
+                    mainConfigFile: "src/js/config.js",
+                    out: "dist/public/js/main.js"
                 }
             }
         },
@@ -59,12 +61,47 @@ module.exports = function(grunt) {
                     script: 'dist/index.js'
                 }
             }
+        },
+        ngtemplates: {
+            options: {
+                bootstrap: function (module, script) {
+                    return 'define([],{init:function($templateCache){' + script + '}});';
+                },
+                htmlmin: {
+                    collapseBooleanAttributes: true,
+                    collapseWhitespace: true,
+                    removeAttributeQuotes: true,
+                    removeComments: true,
+                    removeEmptyAttributes: true,
+                    removeRedundantAttributes: false,
+                    removeScriptTypeAttributes: true,
+                    removeStyleLinkTypeAttributes: true
+                }
+            },
+            development: {
+                cwd: 'src/',
+                src: path.join('js/ui/**/*.html'),
+                dest: path.join('src/js/ui/views.js')
+            }
+        },
+        less: {
+            development: {
+                options: {
+                    paths: []
+                },
+                files: {
+                    "dist/public/css/main.css": "src/less/main.less"
+                }
+            }
         }
     });
 
+    grunt.loadNpmTasks('grunt-angular-templates');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-express-server');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-contrib-less');
 
-    grunt.registerTask('default', ['copy', 'express:development', 'watch']);
+    grunt.registerTask('default', ['ngtemplates', 'requirejs', 'less', 'copy', 'express:development', 'watch']);
 };
