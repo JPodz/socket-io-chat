@@ -3,11 +3,15 @@
     <head>
         <title>Chat Demo</title>
         <link rel="stylesheet" type="text/css" href="css/main.css" />
-  </head>
-  <body>
-        <!-- <ul id="messages"></ul>
-         -->
-        <div chat-input-form></div>
+    </head>
+    <body>
+        <div class="chat-application">
+            <div class="chat-application-contents">
+                <div chat-message-list></div>
+                <div chat-input-form></div>
+            </div>
+        </div>
+        <script src="/socket.io/socket.io.js"></script>
         <script src="js/require.js"></script>
         <script src="js/main.js"></script>
     </body>

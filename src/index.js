@@ -15,6 +15,11 @@ app.get('/', function(req, res){
 // On Socket.IO connection, simple log a message for now
 io.on('connection', function(socket){
   	console.log('A user has connected');
+
+  	socket.on('chat-message', function(msg){
+    	io.emit('chat-message', msg);
+  	});
+  	
 });
 
 // Listen on port 3000 for the server

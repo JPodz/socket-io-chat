@@ -1,0 +1,44 @@
+@import "bower_components/bootstrap/less/bootstrap";
+
+@form-height: 70px;
+
+html, body {
+    height: 100%; 
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+html {
+  	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  	box-sizing: inherit;
+}
+
+.chat-application {
+	height: 100%;
+	padding: 20px;
+
+	.chat-application-contents {
+		position: relative;
+		height: 100%;
+	}
+
+	.chat-input-form {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		display: flex;
+
+		.message-box {
+			flex: 1;
+		}
+
+		.submit-button {
+			width: 100px;
+			
+		}
+	}
+}

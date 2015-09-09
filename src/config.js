@@ -7,6 +7,7 @@ requirejs.config({
     	}
     },
     paths: {
-  		"angular": "../../bower_components/angular/angular"
+  		"angular": "../bower_components/angular/angular",
+        "socket-io": "../bower_components/angular-socket-io/socket"
 	}
 });

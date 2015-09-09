@@ -6,8 +6,8 @@ module.exports = function(grunt) {
             compile: {
                 options: {
                     name: "app",
-                    baseUrl: "src/js/",
-                    mainConfigFile: "src/js/config.js",
+                    baseUrl: "src/",
+                    mainConfigFile: "src/config.js",
                     out: "dist/public/js/main.js"
                 }
             }
@@ -80,8 +80,8 @@ module.exports = function(grunt) {
             },
             development: {
                 cwd: 'src/',
-                src: path.join('js/ui/**/*.html'),
-                dest: path.join('src/js/ui/views.js')
+                src: path.join('ui/**/*.html'),
+                dest: path.join('src/ui/views.js')
             }
         },
         less: {
@@ -90,7 +90,7 @@ module.exports = function(grunt) {
                     paths: []
                 },
                 files: {
-                    "dist/public/css/main.css": "src/less/main.less"
+                    "dist/public/css/main.css": "src/main.less"
                 }
             }
         }
