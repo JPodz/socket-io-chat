@@ -93,6 +93,21 @@ module.exports = function(grunt) {
                     "dist/public/css/main.css": "src/main.less"
                 }
             }
+        },
+        rsync: {
+            options: {
+                args: ["--verbose"],
+                exclude: [],
+                recursive: true
+            },
+            prod: {
+                options: {
+                    src: ["dist", "node_modules"],
+                    dest: "<%= grunt.option('destination') %>",
+                    host: "<%= grunt.option('host') %>",
+                    delete: false
+                }
+            }
         }
     });
 
@@ -102,8 +117,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-rsync');
 
     grunt.registerTask('server', ['build', 'express:development', 'watch']);
     grunt.registerTask('build', ['ngtemplates', 'requirejs', 'less', 'copy']);
+    grunt.registerTask('deploy', ['build', 'rsync']);
     grunt.registerTask('default', ['build']);
 };
