@@ -12,14 +12,14 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + '/views/index.html');
 });
 
-// On Socket.IO connection, simple log a message for now
+// On Socket.IO connection, wire up the event handlers
 io.on('connection', function(socket){
     console.log('A user has connected');
 
     socket.on('chat-message', function(msg){
         io.emit('chat-message', msg);
     });
-    
+
 });
 
 // Listen on port 3000 for the server
