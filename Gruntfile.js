@@ -103,5 +103,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-less');
 
-    grunt.registerTask('default', ['ngtemplates', 'requirejs', 'less', 'copy', 'express:development', 'watch']);
+    grunt.registerTask('server', ['build', 'express:development', 'watch']);
+    grunt.registerTask('build', ['ngtemplates', 'requirejs', 'less', 'copy']);
+    grunt.registerTask('default', ['build']);
 };
