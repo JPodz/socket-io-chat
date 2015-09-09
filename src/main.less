@@ -1,6 +1,6 @@
 @import "bower_components/bootstrap/less/bootstrap";
 
-@form-height: 70px;
+@container-padding: 20px;
 
 html, body {
     height: 100%; 
@@ -19,7 +19,7 @@ html {
 
 .chat-application {
 	height: 100%;
-	padding: 20px;
+	padding: @container-padding;
 
 	.chat-application-contents {
 		position: relative;
@@ -29,11 +29,14 @@ html {
 	.chat-input-form {
 		position: absolute;
 		bottom: 0;
+		left: 0;
 		width: 100%;
 		display: flex;
+		padding: @container-padding;
 
 		.message-box {
 			flex: 1;
+			margin-right: 20px;
 		}
 
 		.submit-button {
