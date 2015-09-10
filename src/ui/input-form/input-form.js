@@ -7,6 +7,10 @@ define(
             '$scope',
             'chatService',
             function defineChatInputFormController ($scope, chatService) {
+
+                /**
+                 * Submits a new message to the service and clears out the form text.
+                 */
                 $scope.submitMessage = function () {
                     var message = $scope.message;
                     chatService.submitMessage(message);

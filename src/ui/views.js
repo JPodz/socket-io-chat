@@ -5,7 +5,12 @@ define([],{init:function($templateCache){  'use strict';
   );
 
 
+  $templateCache.put('ui/login-modal/login-modal.html',
+    "<div class=login-modal><p>Welcome to the party! Who would you like to be known as?</p><div class=username-container><input type=text class=form-control ng-model=loggedInUser.username placeholder=\"Username\"></div><button class=\"btn btn-primary\" ng-click=submit()>Save</button></div>"
+  );
+
+
   $templateCache.put('ui/message-list/message-list.html',
-    "<ul><li ng-repeat=\"message in messageList\">{{message}}</li></ul>"
+    "<ul><li ng-repeat=\"message in messageList\">{{message.message}}</li></ul>"
   );
 }});

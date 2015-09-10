@@ -7,12 +7,27 @@ define(
             '$scope',
             'chatService',
             function defineChatMessageListController ($scope, chatService) {
+
                 chatService.receiveMessage(function (message) {
                     if (!$scope.messageList) {
                         $scope.messageList = [];
                     }
-                    $scope.messageList.push(message);
+                    $scope.messageList.push({
+                        type: 'normal',
+                        message: message
+                    });
                 });
+
+                chatService.receiveEventMessage(function (message) {
+                    if (!$scope.messageList) {
+                        $scope.messageList = [];
+                    }
+                    $scope.messageList.push({
+                        type: 'event',
+                        message: message
+                    });
+                });
+
             }
         ]);
         return module.directive('chatMessageList', [

@@ -7,19 +7,23 @@ var express = require('express'),
 // Mark all items under the /public path as static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Use the root path as the homepage for the app
-app.get('/', function(req, res){
+// Returns the index page
+app.get('/', function getIndexPage (req, res){
     res.sendFile(__dirname + '/views/index.html');
 });
 
 // On Socket.IO connection, wire up the event handlers
 io.on('connection', function(socket){
-    console.log('A user has connected');
 
-    socket.on('chat-message', function(msg){
-        io.emit('chat-message', msg);
+    // When a new user enters the chat...
+    socket.on('chat-user-logged-in', function (user) {
+        io.emit('chat-event-message', user.username + ' has entered the arena.');
     });
 
+    // When a new chat message is submitted...
+    socket.on('chat-message', function (message){
+        io.emit('chat-message', message);
+    });
 });
 
 // Listen on port 3000 for the server
